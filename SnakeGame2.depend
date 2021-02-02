@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1609604802 source:e:\c++\projects\snakegame2\main.cpp
+	<iostream>
+	<cstdlib>
+	<graphics.h>
+	<windows.h>
+	<conio.h>
+
