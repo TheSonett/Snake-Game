@@ -6,3 +6,9 @@
 	<windows.h>
 	<conio.h>
 
+1630086352 source:f:\game dev\console applications using c++\snakegame2\main.cpp
+	<iostream>
+	<cstdlib>
+	<windows.h>
+	<conio.h>
+

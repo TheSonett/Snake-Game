@@ -1,30 +1,50 @@
-/*                      Author : JoySaha
-
-            This is my first small project 'Snake Game'
+/*          @Author : Joy Saha (TheSonett)
+            This is my first small project :)
 */
 
 #include <iostream>
 #include <cstdlib>
 #include <windows.h>
 #include <conio.h>
-
 using namespace std;
 
+
+// Variables
 bool Game_Over;
 const int width = 20;
 const int height = 20;
 int x, y, fruitX, fruitY, score;
 int tailX[100], tailY[100];
 int tail_len;
-enum Direction {STOP = 0, LEFT, RIGHT, UP, DOWN};
-Direction dir;
+enum Direction {STOP = 0, LEFT, RIGHT, UP, DOWN}; Direction dir;
+
+// Functions
+int setup();
+int Draw();
+int input();
+int logic();
+
+
+// main method
+int main()
+{
+    setup();
+    // Game loop
+    while(!Game_Over)
+    {
+        Draw();
+        Sleep(100);
+        input();
+        logic();
+    }
+}
 
 int setup()
 {
     Game_Over = false;
     dir = STOP;
-    x = width / 2;
-    y = height / 2;
+    x = width / 2; // 20 / 2 = 10
+    y = height / 2; // 20 / 2 = 10
     fruitX = rand() % width;
     fruitY = rand() % height;
     score = 0;
@@ -33,16 +53,14 @@ int setup()
 int Draw()
 {
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), {0, 0});
-
     for(int i = 0; i < width + 2; i++)
     {
         cout << "\xB2";
     }
     cout << endl;
-
-    for(int i = 0; i < height; i++)
+    for(int i = 0; i < width; i++)
     {
-        for(int j = 0; j < width; j++)
+        for(int j = 0; j < height; j++)
         {
             if(j == 0)
                 cout << "\xB2";
@@ -70,14 +88,11 @@ int Draw()
         }
         cout << endl;
     }
-
-
     for(int i = 0; i < width + 2; i++)
     {
         cout << "\xB2";
     }
     cout << endl;
-
     cout << "Score : " << score << endl;
 }
 
@@ -141,7 +156,7 @@ int logic()
         break;
     }
 
-    /* When the snake hits the wall, the game will be over.
+    /* // When the snake hits the wall, the game will be over.
     if(x > width || x < 0 || y > height || y < 0)
     {
         Game_Over = true;
@@ -167,7 +182,6 @@ int logic()
             Game_Over = true;
         }
     }
-
     //Eats the food and increase the score.
     if(x == fruitX && y == fruitY)
     {
@@ -176,28 +190,4 @@ int logic()
         fruitY = rand() % height;
         tail_len++;
     }
-}
-
-
-int main()
-{
-    setup();
-    while(!Game_Over)
-    {
-        Draw();
-        if (dir == LEFT || dir == RIGHT)
-        {
-            Sleep(10);
-        }
-
-        Sleep(100);
-
-        if (dir == UP || dir == DOWN)
-        {
-            Sleep(40);
-        }
-        input();
-        logic();
-    }
-    return 0;
 }
